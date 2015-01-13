@@ -91,7 +91,7 @@ public class IdleBot extends PircBot {
 	}
 
 	public void onMessage(String channel, String sender, String login, String hostname, String message) {
-		if (message.equals("!online")) {
+		if (message.equalsIgnoreCase("!online")) {
 			try {
 				sendMessage(channel, Character.onlineChars());
 			} catch (IOException e) {
@@ -103,7 +103,7 @@ public class IdleBot extends PircBot {
 		} else {
 			String[] splitMessage;
 			splitMessage = message.split(" ");
-			if (splitMessage[0].equals("!top")) {
+			if (splitMessage[0].equalsIgnoreCase("!top")) {
 				if (splitMessage.length < 2) {
 					try {
 						sendMessage(channel, Character.topChars("3"));
