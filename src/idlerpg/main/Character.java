@@ -45,7 +45,7 @@ public class Character {
 				}
 				out.close();
 
-				return char1 + goodEvents.get((int) (Math.random() * goodEvents.size())) + " and thus gained " + xp + " experience, leaving him " + timeToLevel(charStats1[2], (400 * (charStats1[1] * charStats1[1]) + 360 * charStats1[1])) + " from leveling up.";
+				return char1 + goodEvents.get((int) (Math.random() * goodEvents.size())) + "! This godsend gave him " + xp + " experience, leaving him " + timeToLevel(charStats1[2], (400 * (charStats1[1] * charStats1[1]) + 360 * charStats1[1])) + " from leveling up.";
 			} else {
 				List<String> badEvents = Files.readAllLines(Paths.get("badevents"), StandardCharsets.UTF_8); // bad event
 				int xp = (int) Math.round(0.1 * (400 * (charStats1[1] * charStats1[1]) + 360 * charStats1[1]));
@@ -60,7 +60,7 @@ public class Character {
 					out.println(charStats1[i]);
 				}
 				out.close();
-				return char1 + badEvents.get((int) (Math.random() * badEvents.size())) + " and lost " + xp + " experience, leaving him " + timeToLevel(charStats1[2], (400 * (charStats1[1] * charStats1[1]) + 360 * charStats1[1])) + " from leveling up.";
+				return char1 + badEvents.get((int) (Math.random() * badEvents.size())) + "! This setback cost him " + xp + " experience, leaving him " + timeToLevel(charStats1[2], (400 * (charStats1[1] * charStats1[1]) + 360 * charStats1[1])) + " from leveling up.";
 			}
 		} else { // FIGHT
 			onlineChars.remove(char1); // remove char1 from online to perpare to fight
