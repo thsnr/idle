@@ -29,7 +29,8 @@ public class Quest {
 		List<String> stats = Files.readAllLines(Paths.get("./characters/" + quester + ".stats"), StandardCharsets.UTF_8);
 		int questLength = (Integer.parseInt(stats.get(1)) * Integer.parseInt(stats.get(1))) * 60 * 1000; // quest takes level^2 minutes to complete
 		System.out.println(questLength);
-
+		bot.addQuester(quester);
+		
 		if (Math.random() <= 0.8) {
 			questTimer.schedule(new RegularQuest(bot), questLength, questLength * 4);
 			bot.sendMessage(bot.getChannels()[0], quester + " has just gone on a quest to gain experience. He should be done in " + Methods.readableTime(questLength) + ".");
@@ -91,6 +92,7 @@ public class Quest {
 				out.println(charStats[j]);
 			}
 			out.close();
+			bot.removeQuester();
 			bot.sendMessage(bot.getChannels()[0], quester + " has managed to " + quests.get((int) (Math.random() * quests.size())) + "! This task gave him " + xp + " experience."); 
 		}
 	}
@@ -124,6 +126,7 @@ public class Quest {
 			itemSlots.put(8, "weapon");
 			itemSlots.put(9, "oar");
 			
+			bot.removeQuester();
 			bot.sendMessage(bot.getChannels()[0], quester + " has managed to " + quests.get((int) (Math.random() * quests.size())) + "! This task gave him a level " + charStats[itemToReplace] + " "  + itemSlots.get(itemToReplace) + "!"); 
 		}	
 	}

@@ -5,6 +5,7 @@ import org.jibble.pircbot.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -25,6 +26,7 @@ public class IdleBot extends PircBot {
 
 	public String mainChannel = null;
 	public IdleBot bot = this;
+	ArrayList<String> questers = new ArrayList<String>();
 
 	public IdleBot() {
 		Properties config = new Properties();
@@ -62,7 +64,7 @@ public class IdleBot extends PircBot {
 			}
 		}
 	}
-	
+
 	class QuestTask extends TimerTask {
 
 		public void run() {
@@ -71,7 +73,7 @@ public class IdleBot extends PircBot {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 		}
 	}
 
@@ -100,6 +102,16 @@ public class IdleBot extends PircBot {
 		} else if (message.equals("!quit") && hostname.equals("ffy.users.quakenet.org")) { // admin hostname
 			quitServer("shutdown ordered by " + sender);
 			System.exit(0);
+		} else if (message.equals("!quest")) {
+			if (questers.size() == 0) {
+				sendMessage(channel, "There are currently no quests underway");
+			} else {
+				String questerList = questers.get(0);
+				for (int i = 1; i < questers.size(); i++) {
+					questerList = questerList + ", " + questers.get(i);
+				}
+				sendMessage(channel, "Currently on quest (ordered from old to new): " + questerList);
+			}
 		} else {
 			String[] splitMessage;
 			splitMessage = message.split(" ");
@@ -189,6 +201,14 @@ public class IdleBot extends PircBot {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void addQuester(String quester) {
+		questers.add(quester);
+	}
+
+	public void removeQuester() {
+		questers.remove(0);
 	}
 
 }
