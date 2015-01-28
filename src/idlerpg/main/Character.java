@@ -60,7 +60,7 @@ public class Character {
 					out.println(charStats1[i]);
 				}
 				out.close();
-				return char1 + badEvents.get((int) (Math.random() * badEvents.size())) + "! This setback cost him " + xp + " experience, leaving him " + timeToLevel(charStats1[2], (400 * (charStats1[1] * charStats1[1]) + 360 * charStats1[1])) + " from leveling up.";
+				return char1 + badEvents.get((int) (Math.random() * badEvents.size())) + ". This setback cost him " + xp + " experience, leaving him " + timeToLevel(charStats1[2], (400 * (charStats1[1] * charStats1[1]) + 360 * charStats1[1])) + " from leveling up.";
 			}
 		} else { // FIGHT
 			onlineChars.remove(char1); // remove char1 from online to perpare to fight

@@ -78,6 +78,7 @@ public class Quest {
 	private static void xpQuest(String quester, IdleBot bot) throws IOException {
 		if (!Character.onlineChars().contains(quester)) {
 			bot.sendMessage(bot.getChannels()[0], quester + " has failed his quest. He is now sad.");
+			bot.removeQuester();
 		} else {
 			List<String> stats = Files.readAllLines(Paths.get("./characters/" + quester + ".stats"), StandardCharsets.UTF_8);
 			List<String> quests = Files.readAllLines(Paths.get("quests"), StandardCharsets.UTF_8);
@@ -100,6 +101,7 @@ public class Quest {
 	private static void itemQuest(String quester, IdleBot bot) throws IOException {
 		if (!Character.onlineChars().contains(quester)) {
 			bot.sendMessage(bot.getChannels()[0], quester + " has failed his quest. He is now sad.");
+			bot.removeQuester();
 		} else {
 			List<String> quests = Files.readAllLines(Paths.get("quests"), StandardCharsets.UTF_8);
 			List<String> stats = Files.readAllLines(Paths.get("./characters/" + quester + ".stats"), StandardCharsets.UTF_8);

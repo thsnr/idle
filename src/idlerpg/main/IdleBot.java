@@ -102,7 +102,7 @@ public class IdleBot extends PircBot {
 		} else if (message.equals("!quit") && hostname.equals("ffy.users.quakenet.org")) { // admin hostname
 			quitServer("shutdown ordered by " + sender);
 			System.exit(0);
-		} else if (message.equals("!quest")) {
+		} else if (message.equalsIgnoreCase("!quest")) {
 			if (questers.size() == 0) {
 				sendMessage(channel, "There are currently no quests underway");
 			} else {
